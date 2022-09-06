@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product List</title>
+</head>
+<body>
+    <nav>
+        <a href="/products/new">Add a New Product</a>
+    </nav>
+    <h1>Mongoose Store</h1>
+    <ul>
+        <% products.forEach(product => { %>
+        <li><a href="/products/<%=product._id; %>"><%=product.name; %></a></li>
+        <% }) %>
+    </ul>
+</body>
+</html>
