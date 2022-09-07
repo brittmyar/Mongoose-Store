@@ -4,6 +4,7 @@ const app = express();
 require('dotenv').config();
 const mongoose = require('mongoose');
 const Product = require('./models/products.js');
+const methodOverride = require("method-override")
 
 // Database Connection/Configuration
 mongoose.connect(process.env.DATABASE_URL, {
@@ -23,6 +24,7 @@ db.on('disconnected', () => console.log('mongo disconnected'));
 // Middleware
 // Body parser middleware: give us access to req.body
 app.use(express.urlencoded({ extended: true }));
+app.use(methodOverride("_method"))
 
 
 // Routes....(INDUCE)
@@ -41,9 +43,13 @@ app.get('/products/new', (req, res) => {
     res.render('new.ejs');
 });
 
-////////////////
+
 // DELETE ROUTE
-////////////////
+
+
+app.delete("/products/:id", (req, res) => {
+    res.send("deleting...")
+  })
 
 // UPDATE ROUTE
 
@@ -57,14 +63,22 @@ app.post("/products", (req, res) => {
 
 
 // EDIT ROUTE
-
+app.get('/products/:id/edit', (req, res) => {
+    Product.findById(req.params.id, function(err, product) {
+      res.render('products-edit', {product: product});
+    })
+  })
+  
 
 // SHOW ROUTE
-app.get('/products/:id', (req, res) => {
-    Product.findById(req.params.id, (error, foundProduct) => {
-        res.redirect('/products');
+app.get("/products/:id", (req, res) => {
+    Product.findById(req.params.id, (err, foundProduct) => {
+        res.render("show.ejs", {
+            product: foundProduct,
+        });
     });
 });
+
 
 
 // Listener
