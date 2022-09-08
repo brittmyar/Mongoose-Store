@@ -5,18 +5,39 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
     <title>Product List</title>
 </head>
 
 <body>
-    <nav>
+    <nav class="navbar navbar-expand-lg bg-light">
         <a href="/products/new">Add a New Product</a>
     </nav>
-    <h1>Mongoose Store</h1>
+
+    <h1>Product List</h1>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
     <ul>
-        <% products.forEach(product=> { %><li><a href="/products/<%=product._id; %>"><%=product.name; %></a>
-        </li><% }) %>
+        <% products.forEach(product=> { %>
+            <li>
+                <a href="/products/<%=product._id%>">
+                    <%=product.name; %>
+                </a>
+                
+<form action="/products/<%= product._id %>?_method=DELETE" method="POST">
+    <button class="btn btn-danger" type="submit">Delete</button>
+    <form style="display:inline; margin-left:17px;">
+  </form>
+  <button><a href="/products/<%=product._id %>/edit">Edit</a></button>
+
+            </li>
+            <% }) %>
     </ul>
 </body>
- 
+ <style>
+Body {
+    background-color: rgb(201, 120, 120);
+    font-size: large;
+}
+
+ </style>
 </html>

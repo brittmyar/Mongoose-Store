@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
     <title>Document</title>
 </head>
 <body>
@@ -11,6 +12,7 @@
         <a href="/products">Back to Products</a>
     </nav>
     <h1><%=product.name %></h1>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
 
     Description: <%= product.description%>
     <br />
@@ -18,12 +20,23 @@
     <br />
     Qty: <%=product.qty%>
     <br />
+    <form action="/products/<%=product._id%>/buy?_method=PUT" method="POST">
+        <% if (product.qty <= 0) { %>
+            <input type="submit" value="Out of Stock" disabled>
+        <% } else { %>
+    <input type="submit" value="Buy">
+        <% } %>
+        </form>
     Img: <img src="<%= product.img; %>">
-
-<a href="/products/{{product._id}}/edit">Edit</a>
-    <!-- <form method="POST" action="/products/{{product._id}}?_method=DELETE">
-        <button type="submit">Delete</button>
-    </form> -->
     
 </body>
+ <style>
+    body {
+        background-color: rgb(202, 179, 179);
+        
+    }
+    h1 {
+        background-color: rgb(235, 81, 81);
+    }
+ </style>
 </html> 

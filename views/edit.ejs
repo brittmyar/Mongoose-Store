@@ -4,14 +4,37 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
     <title>Document</title>
 </head>
 <body>
     <h1>Edit Product</h1>
-    <!-- <a href="/products/{{product._id}}/edit">Edit</a>
-    <form method="POST" action="/products/{{product._id}}?_method=PUT"> -->
-        <button type="submit">Save Product</button>
-      </form>
-        
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+    <form action="/products/<%=product._id%>?_method=PUT" method="POST">
+        Name: <input type="text" name="name" value="<%=product.name%>" /><br /><br />
+        Description: <input type="text" name="description" value="<%=product.description%>" /><br /><br />
+        Image: <input type="text" name="img" value="<%=product.img%>" /><br /><br />
+        Price: <input type="number" name="price" value="<%=product.price%>" /><br /><br />
+        Quantity: <input type="number" name="qty" value="<%=product.qty%>" />
+        <input type="submit" value="Submit Changes" />
+    </form>
 </body>
-</html> 
+<style>
+    body {
+        background-color: #777799;
+        color: #FFFFFF;
+    }
+    input[type=text] {
+     width: 100%;
+     padding: 12px 20px;
+     margin: 8px 0;
+     box-sizing: border-box;
+    }
+    input[type=number] {
+width: 100%;
+padding: 12px 20px;
+margin: 8px 0;
+box-sizing: border-box;
+}
+</style>
+</html>
